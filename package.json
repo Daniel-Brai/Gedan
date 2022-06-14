@@ -1,0 +1,35 @@
+{
+  "name": "gedan_global_options_limited",
+  "version": "1.0.0",
+  "description": "A website for gedan",
+  "main": "server.js",
+  "engines": {
+    "node": "16.x",
+    "npm": "8.x"
+  },
+  "scripts": {
+    "prod:server": "node server",
+    "dev:server": "nodemon server",
+    "prod:tailwindcss": "npx tailwindcss -i ./public/assets/css/tailwind.css -o ./public/assets/css/build.css --minify",
+    "dev:tailwindcss": "npx tailwindcss -i ./public/assets/css/input.css -o ./public/assets/css/tailwind.css --watch"
+  },
+  "author": "Daniel Brai",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.0.1",
+    "ejs": "^3.1.8",
+    "express": "^4.18.1",
+    "express-validator": "^6.14.1",
+    "helmet": "^5.1.0",
+    "joi": "^17.6.0",
+    "mongoose": "^6.3.5",
+    "multer": "^1.4.5-lts.1",
+    "nodemailer": "^6.7.5",
+    "nodemailer-sendgrid": "^1.0.3",
+    "nodemailer-sendgrid-transport": "^0.2.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.16",
+    "tailwindcss": "^3.0.24"
+  }
+}
