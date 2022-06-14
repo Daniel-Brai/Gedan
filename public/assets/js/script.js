@@ -100,29 +100,25 @@ viewBtn.addEventListener('click', () => {
   arrowDown.classList.add('-rotate-90')
 })
 
-// const form = document.querySelector('#form')
-// const fullname = document.querySelector('#fullname').trim().value
-// const email = document.querySelector('#email').trim().value
-// const phone = document.querySelector('#phone').value
-// const message = document.querySelector('#message').trim().value
 
-// form.addEventListener('click', (e) => {
-//   e.preventDefault()
+// const hasHorizontalScrollbar = home.scrollWidth > home.clientWidth;
+// const hasVerticalScrollbar = home.scrollHeight > home.clientHeight;
 
-//   fetch('/', { 
-//     method: 'POST',
-//     headers: { 'Content-Type':'application/json' },
-//     body: JSON.stringify({
-//       name: fullname, 
-//       email: email, 
-//       phone: phone, 
-//       message: message
-//     }).then((res) => {
-//       return res.json();
-//     })
-//   })
-//   console.log('Form submitted successfully!')
-// })
+// if (window.scrollY > 640 ) { 
+//   document.querySelector('#nav-block').classList.toggle('bg-white')
+//   document.querySelector('#nav-block').classList.toggle('z-[2000]')
+//   document.querySelector('#nav-block').classList.add('shadow-xl')
+// } else if ( window.scrollY < 640 ) { 
+//   document.querySelector('#nav-block').classList.toggle('bg-white')
+//   document.querySelector('#nav-block').classList.add('shadow-xl')
+// }
+
+// if (hasHorizontalScrollbar && hasVerticalScrollbar) { 
+//   document.querySelector('#nav-block').classList.toggle('z-[1000]')
+// } else { 
+//   document.querySelector('#nav-block').classList.toggle('z-[1000]')
+// }
+
 
 // footer date
 const footerEl = document.querySelector('#copyright')

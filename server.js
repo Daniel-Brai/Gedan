@@ -2,6 +2,7 @@
 const http = require('http')
 const path = require('path')
 const express = require('express')
+const mongoose = require('mongoose');
 const helmet = require('helmet')
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
@@ -12,6 +13,9 @@ const { check, validationResult } = require('express-validator')
 // import routes
 const userRoute = require('./routes/homeRoutes')
 const galleryRoutes = require('./routes/galleryRoutes')
+
+// import models 
+const User = require('./model/user')
 
 // read environment variables
 config({path: './.env'})
@@ -63,36 +67,35 @@ app.post('/',
         .isLength({ min: 2})
         .escape()
 ]
-, (req, res) => { 
+, async (req, res) => { 
 
-    const user = {
+    const user = new User({
 		name: req.body.name,
 		email: req.body.email,
         phone: req.body.phone, 
         message: req.body.message
-	};
+	});
 
     const errors = validationResult(req).array();
 
     if (errors) {
         req.session.errors = errors;
         req.session.success = false;
-        res.status(307).redirect('/');
+        res.status(308).redirect('/');
     } else {
         req.session.success = true;
-        res.status(307).redirect('/');
+        res.status(308).redirect('/');
     }
-    
-	console.log(user);
-    
-    // if (!errors.isEmpty()) { 
-    //     const inputErrs = errors.array()
-    //     res.render('index', { inputErrs })
-    //     res.redirect('/')
-    // } else { 
-    //     // redirect home after succesfull validation and submit
-    //     res.redirect('/')
-    // }
+    console.log(errors)
+
+    try {
+        // wait till user is validated before
+        // saving the user to the database
+        await user.save() 
+    } catch (error) {
+        // log error
+        console.log(`An error occurred - ${error.message}}`)
+    }
 })
 
 // Server setup 

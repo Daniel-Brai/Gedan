@@ -28,11 +28,12 @@
   <link rel="stylesheet" href="/css/tailwind.css">
   <title>Home | Gedan Global Options Ltd</title>
 </head>
-<body class="font-['Poppins'] overflow-x-hidden bg-white" id="Home">
+<body class="font-['Poppins'] overflow-x-hidden bg-white scrollbar-w-3 scrollbar-thumb-gray-400 scrollbar-track-gray-200" id="Home">
   <div class="section relative h-full bg-white overflow-hidden">
+    <div id="nav-block" class="fixed top-0 hidden sm:block w-[100vw] h-[8vh] "></div>
 
     <div class="max-w-7xl mx-auto">
-      <div class="relative z-10 pb-8 bg-white sm:pb-16 md:pb-20 lg:max-w-2xl lg:w-full lg:pb-28 xl:pb-32">
+      <div class="relative z-[1100] pb-8 bg-white sm:pb-16 md:pb-20 lg:max-w-2xl lg:w-full lg:pb-28 xl:pb-32">
         <!-- Hiddem svg for the hero image cut-->
         <svg class="hidden lg:block absolute right-0 inset-y-0 h-full w-48 text-white transform translate-x-1/2 " fill="currentColor" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
           <polygon class="bg-transparent" points="50,0 100,0 50,100 0,100" />
@@ -40,6 +41,7 @@
   
         <div>
           <div class="relative pt-6 px-4 sm:px-6 lg:px-8">
+            
             <nav id="navbar"  class="fixed top-5 w-[100vw] flex items-center justify-between sm:h-10 lg:justify-start lg:w-[100vw]" aria-label="Global" role="navigation">
               <div class="flex items-center flex-grow flex-shrink-0 lg:flex-grow-0">
                 <div class="flex items-center justify-between w-full md:w-auto">
@@ -301,6 +303,15 @@
 
     <!-- Contact us form -->
     <div class="mt-8 lg:mt-0">
+      <!-- error checking -->
+      <!-- <% if(typeof errors != 'undefined') { %>
+        <% errors.forEach(function(error) { %>
+          <div class="my-3 px-4 py-3 bg-red-100 text-red-500 text-center w-full rounded-2xl">
+            <%= error.msg %>
+          </div>
+        <% }) %>
+      <% } %> -->
+
       <form action="/" method="POST" id="form" class="lg:space-y-3 w-full md:w-96 lg:min-w-[30rem] lg:max-w-[40rem]"  >
       
         <label for="fullname" class="block">
@@ -311,19 +322,28 @@
             invalid:border-red-500 invalid:text-red-600
             focus:invalid:border-red-500 focus:invalid:ring-red-500
           "/>
+          <!-- error checking -->
+          <% if(typeof errors != 'undefined') { %>
+              <div class="my-3 px-4 py-3 text-sm bg-red-100 text-red-500 text-center w-full rounded-2xl">
+                <%= errors[0].msg %>
+              </div>
+          <% } %>
         </label>
 
         <label for="email" class="block">
           <span class="after:content-['*'] after:ml-0.5 after:text-red-500 block text-sm font-medium text-slate-700">Email</span>
-          <input type="email" name="email" id="email" class="peer ... mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400
+          <input type="email" name="email" id="email" class="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400
             focus:outline-none focus:border-[rgba(80,165,111,0.65)] focus:ring-1 focus:ring-[rgba(80,165,111,0.8)]
             disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none
             invalid:border-red-500 invalid:text-red-600
             focus:invalid:border-red-500 focus:invalid:ring-red-500
           "/>
-          <p class="mt-2 invisible peer-invalid:visible text-red-600 text-sm">
-            Please provide a valid email address.
-          </p>
+          <!-- error checking -->
+          <% if(typeof errors != 'undefined') { %>
+            <div class="my-3 px-4 py-3 text-sm bg-red-100 text-red-500 text-center w-full rounded-2xl">
+              <%= errors[1].msg %>
+            </div>
+          <% } %>
         </label>
 
         <label for="phone" class="block">
@@ -334,6 +354,12 @@
             invalid:border-red-500 invalid:text-red-600
             focus:invalid:border-red-500 focus:invalid:ring-red-500
           "/>
+          <!-- error checking -->
+          <% if(typeof errors != 'undefined') { %>
+            <div class="my-3 px-4 py-3 text-sm bg-red-100 text-red-500 text-center w-full rounded-2xl">
+              <%= errors[2].msg %>
+            </div>
+          <% } %>
         </label>
 
         <label for="message" class="block">
@@ -344,6 +370,12 @@
             invalid:border-red-500 invalid:text-red-600
             focus:invalid:border-red-500 focus:invalid:ring-red-500
           "/>
+          <!-- error checking -->
+          <% if(typeof errors != 'undefined') { %>
+            <div class="my-3 px-4 py-3 text-sm bg-red-100 text-red-500 text-center w-full rounded-2xl">
+              <%= errors[4].msg %>
+            </div>
+          <% } %>
         </label>
     
         <button class="flex items-center justify-center appearance-none w-48 px-2 py-3 bg-[rgb(80,165,111)] hover:bg-[rgba(80,165,111,0.9)] focus:ring-1 focus:ring-[rgba(80,165,111,0.8)] lg:px-4 lg:py-3 text-white font-medium  rounded-xl" type="submit">
