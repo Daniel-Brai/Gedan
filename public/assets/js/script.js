@@ -6,11 +6,6 @@ const services = document.querySelector('#Services')
 const work = document.querySelector('#Work')
 const contact = document.querySelector('#Contact')
 
-const form = document.querySelector('#form')
-const fullname = document.querySelector('#fullname').value
-const email = document.querySelector('#email').value
-const phone = document.querySelector('#phone').value
-const message = document.querySelector('#message').value
 
 // menu state interactivity
 // open menu functionality
@@ -104,6 +99,30 @@ const arrowDown = document.querySelector('#arrow-down')
 viewBtn.addEventListener('click', () => {
   arrowDown.classList.add('-rotate-90')
 })
+
+// const form = document.querySelector('#form')
+// const fullname = document.querySelector('#fullname').trim().value
+// const email = document.querySelector('#email').trim().value
+// const phone = document.querySelector('#phone').value
+// const message = document.querySelector('#message').trim().value
+
+// form.addEventListener('click', (e) => {
+//   e.preventDefault()
+
+//   fetch('/', { 
+//     method: 'POST',
+//     headers: { 'Content-Type':'application/json' },
+//     body: JSON.stringify({
+//       name: fullname, 
+//       email: email, 
+//       phone: phone, 
+//       message: message
+//     }).then((res) => {
+//       return res.json();
+//     })
+//   })
+//   console.log('Form submitted successfully!')
+// })
 
 // footer date
 const footerEl = document.querySelector('#copyright')

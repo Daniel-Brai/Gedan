@@ -1,17 +1,25 @@
-// Dependencies
+// import dependencies
 const http = require('http')
 const path = require('path')
 const express = require('express')
 const helmet = require('helmet')
+const cookieParser = require('cookie-parser');
+const session = require('express-session');
+const { config } = require('dotenv');
+const { connectDB } = require('./connection/connectDB')
 const { check, validationResult } = require('express-validator')
+
+// import routes
 const userRoute = require('./routes/homeRoutes')
 const galleryRoutes = require('./routes/galleryRoutes')
-const { connectDB } = require('./connection/connectDB')
+
+// read environment variables
+config({path: './.env'})
 
 // Initiliazing express app
 const app = express()
 
-// conncet to Database
+// connect to Database
 connectDB()
 
 // app utilites
@@ -19,6 +27,12 @@ app.use(helmet())
 app.set('view engine', 'ejs')
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
+app.use(cookieParser());
+app.use(session({
+    secret: 'John is a cat man' || process.env.SESSION_SECRET_KEY,
+    saveUninitialized: false,
+    resave: false
+}));
 app.use(express.static(path.join(__dirname, 'public/views')))
 app.use('/js', express.static(path.join(__dirname, 'public/assets/js')))
 app.use('/css', express.static(path.join(__dirname, 'public/assets/css')))
@@ -31,43 +45,55 @@ app.use('/favicon', express.static(path.join(__dirname, 'public/assets/favicon')
 app.use('/', userRoute)
 app.use('/gallery', galleryRoutes)
 
-app.post('/',(req, res) => { 
+app.post('/', 
+[
+    check('name', 'Your name must be at least 3 characters long')
+        .exists()
+        .isLength({ min: 3, max: 30}),
+    check('email', 'Your email must be a valid email address')
+        .exists()
+        .isEmail()
+        .normalizeEmail(),
+    check('phone', 'Your phone number must be at 11 numbers long and be valid')
+        .exists()
+        .isLength({ min: 11})
+        .isNumeric(), 
+    check('message', 'Your message must be at least 2 characters long')
+        .exists()
+        .isLength({ min: 2})
+        .escape()
+]
+, (req, res) => { 
 
-    // const newUser = {
-	// 	name: req.body.fullname,
-	// 	email: req.body.email,
-    //     phone: req.body.phone, 
-    //     message: req.body.message
-	// };
+    const user = {
+		name: req.body.name,
+		email: req.body.email,
+        phone: req.body.phone, 
+        message: req.body.message
+	};
 
-	// res.status(201).json(newUser);
-    // const errors = validationResult(req)
+    const errors = validationResult(req).array();
+
+    if (errors) {
+        req.session.errors = errors;
+        req.session.success = false;
+        res.status(307).redirect('/');
+    } else {
+        req.session.success = true;
+        res.status(307).redirect('/');
+    }
+    
+	console.log(user);
+    
     // if (!errors.isEmpty()) { 
     //     const inputErrs = errors.array()
-    //     res.render('/', { inputErrs })
-    //     // res.redirect('/')
-    // } 
-    console.log(req.body)
-
+    //     res.render('index', { inputErrs })
+    //     res.redirect('/')
+    // } else { 
+    //     // redirect home after succesfull validation and submit
+    //     res.redirect('/')
+    // }
 })
-
-// [
-//     check('fullname', 'Your name must be at least 3 characters long')
-//         .exists()
-//         .isLength({ min: 3, max: 30}),
-//     check('email', 'Your email must be a valid email address')
-//      .exists()
-//      .isEmail()
-//      .normalizeEmail(),
-//     check('phone', 'Your phone number must be at 11 numbers long and be valid')
-//         .exists()
-//         .isLength({ min: 11})
-//         .isNumeric(), 
-//     check('Message', 'Your message must be at least 2 characters long')
-//         .exists()
-//         .isLength({ min: 2})
-//         .escape()
-// ],  
 
 // Server setup 
 const server = http.createServer(app)
