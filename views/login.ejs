@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,7 +11,7 @@
     <meta name="developer" content="Daniel Brai, danielbrai.dev@gmail.com">
     <meta name="url" content="">
     <meta name="identifier-URL" content="">
-    <meta name="og:title" content="Gallery | Gedan Global Options Ltd"/>
+    <meta name="og:title" content="Gallery Login | Gedan Global Options Ltd"/>
     <meta name="og:type" content="website"/>
     <meta name="og:url" content="">
     <meta name="og:image" src="/images/gedan_hero_image_fallback.jpg">
@@ -26,26 +26,33 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/css/animate.min.css">
     <link rel="stylesheet" href="/css/tailwind.css">
-    <title>Gallery | Gedan Global Options Ltd</title>
+    <title>Gallery Login | Gedan Global Options Ltd</title>
 </head>
-<body class="bg-white relative overflow-y-scroll w-full h-full scrollbar-w-3 scrollbar-thumb-gray-400 scrollbar-track-gray-200">
-    <nav class="px-8 py-4 bg-green-50 w-full flex items-center">
-        <!-- Gedan Logo -->
-        <img class="h-8 w-auto" src="/logos/gedan.jpg" alt="Gedan Logo">
-        
+<body class="font-['Poppins'] bg-white relative overflow-y-scroll w-full h-full scrollbar-w-3 scrollbar-thumb-gray-400 scrollbar-track-gray-200">
+    <nav class="px-8 py-4 bg-green-50 w-full flex items-center justify-between">
         <!-- go home -->
-        <a class="text-gray-600 hover:text-gray-800" href="/">
-            <span class="ml-3 font-medium text-base lg:text-lg">Home</span>
+        <a class="text-gray-900 flex items-center" href="/">
+            <svg class="fill-[rgb(80,165,111)]" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M12.707 17.293 8.414 13H18v-2H8.414l4.293-4.293-1.414-1.414L4.586 12l6.707 6.707z"></path></svg>
+            <span class="ml-3 font-medium text-base lg:text-lg">Go Home</span>
         </a>
     </nav>
   
+    <section class="px-16" id="Login">
+        <h2 class="mt-20 text-center text-3xl sm:text-4xl text-[rgb(80,165,111)] lg:text-5xl font-bold">Login to the Gallery</h2>
 
-    <section class="mt-6" id="Gallery">
-        <h2 class="text-center text-2xl text-[rgb(80,165,111)] lg:text-5xl font-bold">Our Gallery</h2>
-        <div>
+        <div class="flex flex-col items-center justify-center mt-10">
+            <form action="/login" method="POST" class="space-y-4 lg:space-y-5 w-full md:w-96 lg:min-w-[30rem] lg:max-w-[40rem] xl:max-w-[45rem]">
+                <%- include('./includes/authInputFields.ejs'); %>
+    
+                <button type="submit" class="w-full px-6 py-3 flex items-center justify-center text-lg text-white font-bold bg-[rgb(99,170,125)] hover:transition-colors hover:bg-[rgb(96,187,130)] rounded-full">Login</button>
+            </form>
 
+            <p class="justify-start mt-3 text-sm text-gray-500 font-medium">
+                You don't have any account? 
+                <a class="text-gray-700 hover:text-gray-900 font-medium" href="/gallery/auth/register">Create an account</a>
+            </p>
         </div>
+
     </section>
-    <script type="module" src="/js/script-2.js"></script>
 </body>
 </html>

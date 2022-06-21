@@ -32,6 +32,7 @@ links.forEach(link => {
   })
 });
 
+const nav = document.querySelector('#nav-block')
 
 // scroll for navbar to hide gedan logo
 window.onscroll = () => {
@@ -41,6 +42,12 @@ window.onscroll = () => {
     } else if (scrollY < 300 ) { 
       document.querySelector('#gedan-logo').classList.remove('hidden')
     }
+  }
+
+  if ( window.scrollY >= 600 ) {
+    nav.classList.add('sm:block')
+  } else {
+    nav.classList.remove('sm:block')
   }
 
 }
@@ -97,31 +104,14 @@ linkContactMobile.addEventListener('click', () => {
 const viewBtn = document.querySelector('#view-btn')
 const arrowDown = document.querySelector('#arrow-down')
 viewBtn.addEventListener('click', () => {
-  arrowDown.classList.add('-rotate-90')
+  arrowDown.classList.toggle('-rotate-180')
 })
-
-
-// const hasHorizontalScrollbar = home.scrollWidth > home.clientWidth;
-// const hasVerticalScrollbar = home.scrollHeight > home.clientHeight;
-
-// if (window.scrollY > 640 ) { 
-//   document.querySelector('#nav-block').classList.toggle('bg-white')
-//   document.querySelector('#nav-block').classList.toggle('z-[2000]')
-//   document.querySelector('#nav-block').classList.add('shadow-xl')
-// } else if ( window.scrollY < 640 ) { 
-//   document.querySelector('#nav-block').classList.toggle('bg-white')
-//   document.querySelector('#nav-block').classList.add('shadow-xl')
-// }
-
-// if (hasHorizontalScrollbar && hasVerticalScrollbar) { 
-//   document.querySelector('#nav-block').classList.toggle('z-[1000]')
-// } else { 
-//   document.querySelector('#nav-block').classList.toggle('z-[1000]')
-// }
 
 
 // footer date
 const footerEl = document.querySelector('#copyright')
 let year =  new Date().getFullYear();
 
-footerEl.innerHTML = `<p class="text-center">&copy; Copyright ${year} Gedan Global Options Ltd RC:746602.</p>`
+footerEl.innerHTML = `<p class="text-center font-medium">&copy; Copyright ${year} Gedan Global Options Ltd RC:746602.</p>`
+
+export default linkServices
