@@ -9,4 +9,4 @@ A Mechanical Engineering Corporate Website built with express, ejs and tailwind 
 ## To-do
 It's still a work in progress
 1. I have to add authentication for user and admin for gallery image routes.
-2. I have to render images coming from AWS S3 in the MongoDB database in gallery page
+2. I have to upload images to AWS S3 then save the image url to MongoDB database and render the images through the URLs on gallery page
