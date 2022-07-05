@@ -9,7 +9,7 @@ config({path: './.env'})
 const emailHTML = () => { 
     return `<!DOCTYPE html><html lang="en" style="padding:0;margin:0;width:100%;font-amily: Arial,sans-serif;-webkit-text-size-adjust:100%;">
      <head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"></head>
-     <body>div</body></html>` 
+     <body></body></html>` 
 }
 
 const sendEmail = async(email) => { 

@@ -12,11 +12,13 @@ const AdminSchema = new mongoose.Schema({
         min: 5,
         required: true,
         unique: true,
+        trim: true
     },
     email: { 
         type: String,
         set: toLower, 
         unique: true,
+        trim: true,
         required: true
     },
     password: { 
@@ -24,7 +26,7 @@ const AdminSchema = new mongoose.Schema({
         min: 7,
         required: true,
     },
-})
+}, {timestamps: true})
 
 const admin = mongoose.model('Admin', AdminSchema)
 

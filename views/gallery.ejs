@@ -29,14 +29,14 @@
     <title>Gallery | Gedan Global Options Ltd</title>
 </head>
 <body class="bg-white relative overflow-y-scroll w-full h-full scrollbar-w-3 scrollbar-thumb-gray-400 scrollbar-track-gray-200">
-    <nav class="px-8 py-4 bg-green-50 w-full flex items-center">
-        <!-- Gedan Logo -->
-        <img class="h-8 w-auto" src="/logos/gedan.jpg" alt="Gedan Logo">
-        
-        <!-- go home -->
-        <a class="text-gray-600 hover:text-gray-800" href="/">
-            <span class="ml-3 font-medium text-base lg:text-lg">Home</span>
+    <nav class="px-8 py-4 bg-green-50/80 w-full flex items-center justify-between">
+        <!-- Go home -->
+        <a class="text-gray-600 hover:text-gray-800 flex items-center" href="/">
+            <img class="h-8 w-auto" src="/logos/gedan.jpg" alt="Gedan Logo">
+            <span class="ml-3 font-medium text-base lg:text-lg xl:text-3xl">Home</span>
         </a>
+
+        <a class="font-medium text-base lg:text-lg xl:text-2xl p-5 py-2 bg-green-100 rounded-lg hover:bg-green-200 hover:transition-colors" href="/gallery/auth/admin/login">Login</a>
     </nav>
   
 
@@ -46,6 +46,29 @@
 
         </div>
     </section>
-    <script type="module" src="/js/script-2.js"></script>
+    
+    <!-- Footer section -->
+  <section class="bg-[rgb(239,240,241)] py-4 w-full absolute" id="footer">
+    
+    <div class="space-y-4">
+
+      <div class="flex justify-center">
+        <%- include('./includes/socials.ejs'); %>
+      </div>
+
+      <div class="text-xs text-center font-medium">
+        <p>
+          <a href="/">Home</a>
+          <span>.</span>
+          <a href="/privacy_policy">Privacy Policy</a>
+        </p>
+      </div>
+
+      <div class="text-sm text-slate-900 " id="copyright"></div>
+  
+
+    </div>
+  
+  </section>
 </body>
 </html>

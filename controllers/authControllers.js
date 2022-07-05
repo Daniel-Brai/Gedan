@@ -1,66 +1,68 @@
 // dependencies
 const { validationResult } = require("express-validator")
+const bcrypt = require("bcrypt")
+
 // import admin user model
 const Admin = require('../model/admin')
 
 // import password hasher and unhasher
-const { hashPassword , unhashPassword } = require('../utils/hasher')
+// const { hashPassword , unhashPassword } = require('../utils/secure')
 
 const registerAdmin = async (req, res) => { 
 
-    var { username, email, password} = req.body
+    let { username, email, password } = req.body
 
-    password = hashPassword(password)
+    const salt = await bcrypt.genSalt(10)
+    let encryptedPassword = await bcrypt.hash(password, salt)
 
+    // generate salt to hash password
     
-
-    const errors = validationResult(req)
-
-    if (!errors.isEmpty()) { 
-        return res.status(400).json({
-            error: errors.array()[0].msg,
-        })
-    }
-
-    const newAdmin = new Admin(req.body)
+    const newAdmin = new Admin({
+        username: username,
+        email: email, 
+        password: encryptedPassword
+    })
 
     if (!username && !email && !password) { 
         res.status(400).json({"Error": "Missing credentials! Try again"})
     }
 
     try {
-        const admin = await newAdmin.save((err, _admin) => {
-            if (err) {
-                return res.status(400).json({
-                    error:  err.message || "|An error occurred while saving admin"
-                })
-            }
-            return _admin
-        })
+        const admin = await newAdmin.save()
+        res.status(201).json({"Message": "Admin created succesfully!"})
         console.log(admin)
+        console.log(typeof admin)
+        console.log(admin.password)
     } catch (error) {
         res.status(400).json({"Error": error.message || "An error occured - Unable to register admin!"})
     }
 }
 
 const loginAdmin = async (req, res) => {
-    var { username, password } = req.body
 
-    const admin = Admin.findOne({username}, (err, admin) => { 
-        if(err || !admin) { 
-            return res.status(400).json({
-                error: "Email was not found"
-            })
-        }
-        return admin
-    })
+    let { username, password } = req.body
 
-    console.log(admin)
-    // const _admin = new Admin(req.body)
+    const errors = validationResult(req).array()
 
-    // if ( admin.password)
+    if (!errors) { 
+        res.status(400).json({"Message": "Invalid fields!"})
+        res.render('login', { errors })
+    }
+    
+    const admin = await Admin.findOne({username})
+
+    if (!admin) { 
+        res.status(404).json({"Error": "Admin not found!"})
+    }
+
+    let validPassword = await bcrypt.compare(password, admin.password)
+
     try {
-
+        if (validPassword) {
+            res.redirect('/gallery/upload')
+        } else {
+            res.render('login', { errors })
+        }
     } catch (error) {
         res.status(400).json({"Error": error.message || "An error occured - Unable to login admin!"})
     }
