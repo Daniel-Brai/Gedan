@@ -42,31 +42,26 @@ const loginAdmin = async (req, res) => {
 
     let { username, password } = req.body
 
-    const errors = validationResult(req).array()
+    const errors = [
+        {"message": "Invalid username!"},
+        {"message": "Invalid password!"}
+    ]
 
-    if (!errors) { 
-        res.status(400).json({"Message": "Invalid fields!"})
-        res.render('login', { errors })
-    }
-    
     const admin = await Admin.findOne({username})
 
-    if (!admin) { 
-        res.status(404).json({"Error": "Admin not found!"})
-    }
-
-    let validPassword = await bcrypt.compare(password, admin.password)
-
     try {
+        let validPassword = await bcrypt.compare(password, admin.password)
+
+        if (!admin && !errors.length) { 
+            res.status(404).json({"Error": "Invalid credentials - Admin not found!"})
+        }
+        
         if (validPassword) {
             res.redirect('/gallery/upload')
-        } else {
-            res.render('login', { errors })
         }
     } catch (error) {
-        res.status(400).json({"Error": error.message || "An error occured - Unable to login admin!"})
+        res.render('login', { errors })
     }
-
 }
 
 module.exports = { registerAdmin, loginAdmin }
