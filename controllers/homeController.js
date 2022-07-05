@@ -53,7 +53,7 @@ const formHandler = async (req, res) => {
         // send an email to the user confirm he/she filled the form
         try {
             await user.save() 
-            sendEmail()
+            sendEmail(req.body.email)
 
             console.log('User saved to database successfully and email sent!')
         } catch (error) {

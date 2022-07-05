@@ -12,6 +12,7 @@ const { connectDB } = require('./connection/connectDB')
 const userRoutes = require('./routes/homeRoutes')
 const galleryRoutes = require('./routes/galleryRoutes')
 const galleryImageRoutes = require('./routes/galleryImageRoutes')
+const adminAuthRoutes = require('./routes/authRoutes')
 
 // read environment variables
 config({path: './.env'})
@@ -45,6 +46,7 @@ app.use('/favicon', express.static(path.join(__dirname, 'public/assets/favicon')
 app.use('/', userRoutes)
 app.use('/gallery', galleryRoutes)
 app.use('/image', galleryImageRoutes)
+app.use('/api/auth', adminAuthRoutes)
 
 // error handling page
 app.all('*', (req, res) => {
