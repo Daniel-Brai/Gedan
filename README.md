@@ -8,4 +8,4 @@ A Mechanical Engineering Corporate Website built with express, ejs and tailwind 
 
 ## To-do
 It's still a work in progress
-1. I have to upload images to AWS S3 then save the image url to MongoDB database and render the images through the URLs on gallery page
+1. I have to upload images to Cloudinary then save the image url to MongoDB database and render the images through the URLs on gallery page
