@@ -3,7 +3,7 @@ const menu = document.querySelector('#mobile-menu')
 const home = document.querySelector('#Home')
 const about  = document.querySelector('#About')
 const services = document.querySelector('#Services')
-const work = document.querySelector('#Work')
+// const work = document.querySelector('#Work')
 const contact = document.querySelector('#Contact')
 
 
@@ -44,7 +44,7 @@ window.onscroll = () => {
     }
   }
 
-  if ( window.scrollY >= 600 ) {
+  if ( window.scrollY > 60 ) {
     nav.classList.add('sm:block')
   } else {
     nav.classList.remove('sm:block')
@@ -71,7 +71,7 @@ linkServices.addEventListener('click', () => {
 
 const linkWork = document.querySelector('#workLink')
 linkWork.addEventListener('click', () => { 
-  work.scrollIntoView()
+  window.location.href = '/gallery'
 })
 
 const linkContact = document.querySelector('#contactLink')
@@ -98,13 +98,6 @@ linkServicesMobile.addEventListener('click', () => {
 const linkContactMobile = document.querySelector('#contactLinkMobile')
 linkContactMobile.addEventListener('click', () => { 
   contact.scrollIntoView()
-})
-
-//view more in work section button
-const viewBtn = document.querySelector('#view-btn')
-const arrowDown = document.querySelector('#arrow-down')
-viewBtn.addEventListener('click', () => {
-  arrowDown.classList.toggle('-rotate-180')
 })
 
 

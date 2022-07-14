@@ -15,7 +15,7 @@ router.post('', [
         .exists()
         .isEmail()
         .normalizeEmail(),
-    check('phone', 'Your phone number must be at 11 numbers long and be valid')
+    check('phone', 'Your phone number must be at least 11 numbers long')
         .exists()
         .isLength({ min: 11})
         .isNumeric(), 

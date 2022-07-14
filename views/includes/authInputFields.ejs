@@ -1,34 +1,41 @@
-
 <label for="username" class="block">
-  <span class="after:content-['*'] after:ml-0.5 after:text-red-500 block text-sm font-medium text-slate-700">Username</span>
-  <input type="username" name="username" placeholder="Enter your username" id="username" class="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400
-    focus:outline-none focus:border-[rgba(80,165,111,0.65)] focus:ring-1 focus:ring-[rgba(80,165,111,0.8)]
-    disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none
-    invalid:border-red-500 invalid:text-red-600
-    focus:invalid:border-red-500 focus:invalid:ring-red-500
-  "/>
+  <span
+    class="after:content-['*'] after:ml-0.5 after:text-red-500 block text-sm font-medium text-slate-700"
+    >Username</span
+  >
+  <input
+    type="username"
+    name="username"
+    placeholder="Enter your username"
+    id="username"
+    class="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400 focus:outline-none focus:border-[rgba(80,165,111,0.65)] focus:ring-1 focus:ring-[rgba(80,165,111,0.8)] disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none invalid:border-red-500 invalid:text-red-600 focus:invalid:border-red-500 focus:invalid:ring-red-500"
+  />
   <!-- error checking -->
   <% if(typeof errors != 'undefined') { %>
-    <div class="my-3 text-sm text-red-500 w-full">
-      <% let messages = errors.map(function(err) {return err.msg;}); %>
-      <%= messages[0] %>
-    </div>
+  <div class="my-3 text-sm text-red-500 w-full">
+    <% let messages = errors.map(function(err) {return err.msg;}); %> <%=
+    messages[0] %>
+  </div>
   <% } %>
 </label>
 
 <label for="password" class="block">
-  <span class="after:content-['*'] after:ml-0.5 after:text-red-500 block text-sm font-medium text-slate-700">Password</span>
-  <input type="password" name="password" placeholder="Enter your password" id="password" class="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400
-    focus:outline-none focus:border-[rgba(80,165,111,0.65)] focus:ring-1 focus:ring-[rgba(80,165,111,0.8)]
-    disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none
-    invalid:border-red-500 invalid:text-red-600
-    focus:invalid:border-red-500 focus:invalid:ring-red-500
-  "/>
+  <span
+    class="after:content-['*'] after:ml-0.5 after:text-red-500 block text-sm font-medium text-slate-700"
+    >Password</span
+  >
+  <input
+    type="password"
+    name="password"
+    placeholder="Enter your password"
+    id="password"
+    class="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400 focus:outline-none focus:border-[rgba(80,165,111,0.65)] focus:ring-1 focus:ring-[rgba(80,165,111,0.8)] disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none invalid:border-red-500 invalid:text-red-600 focus:invalid:border-red-500 focus:invalid:ring-red-500"
+  />
   <!-- error checking -->
   <% if(typeof errors != 'undefined') { %>
-    <div class="my-3 text-sm text-red-500 w-full">
-      <% let messages = errors.map(function(err) {return err.msg;}); %>
-      <%= messages[1] %>
-    </div>
+  <div class="my-3 text-sm text-red-500 w-full">
+    <% let messages = errors.map(function(err) {return err.msg;}); %> <%=
+    messages[1] %>
+  </div>
   <% } %>
 </label>

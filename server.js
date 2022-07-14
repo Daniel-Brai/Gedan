@@ -34,7 +34,6 @@ app.use(session({
     saveUninitialized: false,
     resave: false
 }));
-// app.use(express.static(path.join(__dirname, 'public/views')))
 app.use('/js', express.static(path.join(__dirname, 'public/assets/js')))
 app.use('/css', express.static(path.join(__dirname, 'public/assets/css')))
 app.use('/logos', express.static(path.join(__dirname, 'public/assets/logos')))

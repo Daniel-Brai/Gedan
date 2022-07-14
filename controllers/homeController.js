@@ -45,7 +45,7 @@ const formHandler = async (req, res) => {
         req.session.success = true;
         res.status(308).redirect('/');
     }
-    console.log(errors)
+    // console.log(errors)
 
     if (!errors) {
         // wait till user is validated before

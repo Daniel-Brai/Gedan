@@ -4,7 +4,7 @@ const multer = require('multer')
 
 // creating a storage variable for uploading images
 const storage = multer.memoryStorage({
-    destination: function(req, file, cb) {
+    destination: function (req, file, cb) {
         cb(null, '')
     }
 })
@@ -16,10 +16,10 @@ const filefilter = (req, file, cb) => {
     if (extensionName !== ".jpeg" && extensionName !== ".jpg" && extensionName !== ".png") {
         cb(new Error("Unsupported file type!"), false)
     } else {
-        cb(null , true)
+        cb(null, true)
     }
 }
 
-const fileUpload = multer({storage: storage, filefilter: filefilter})
+const fileUpload = multer({ storage: storage, filefilter: filefilter })
 
 module.exports = fileUpload

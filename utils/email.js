@@ -7,9 +7,10 @@ const { config } = require('dotenv')
 config({path: './.env'})
 
 const emailHTML = () => { 
-    return `<!DOCTYPE html><html lang="en" style="padding:0;margin:0;width:100%;font-family: Arial,sans-serif;-webkit-text-size-adjust:100%;">
-     <head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"></head>
-     <body></body></html>` 
+    return `<!DOCTYPE html><html lang="en" style="padding:0;margin:0;width:100%;font-family: Arial,sans-serif;-webkit-text-size-adjust:100%;"><head><meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"></head>
+    <body><p>Hi there! Thank you for reaching out to us. We greatly appreciated your message and will look into it.</p>
+    <p><strong>NOTE: </strong>This is an automated email. It does not answer your emails to GEDAN GLOBAL OPTIONS LIMITED</p></body></html>` 
 }
 
 const sendEmail = async(email) => { 
@@ -41,7 +42,7 @@ const sendEmail = async(email) => {
     
         // Create the email options and body 
         const mailOptions = {
-            from: `FRONT <${process.env.CLIENT_EMAIL}>`,
+            from: `From <${process.env.CLIENT_EMAIL}>`,
             to: email,
             subject: `Thank you reaching out to Gedan Global Options Ltd!`,
             html: emailHTML(),
