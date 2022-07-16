@@ -3,7 +3,7 @@ const menu = document.querySelector('#mobile-menu')
 const home = document.querySelector('#Home')
 const about  = document.querySelector('#About')
 const services = document.querySelector('#Services')
-// const work = document.querySelector('#Work')
+const form = document.querySelector('#form')
 const contact = document.querySelector('#Contact')
 
 
@@ -100,6 +100,10 @@ linkContactMobile.addEventListener('click', () => {
   contact.scrollIntoView()
 })
 
+// Prevent reload of form
+form.addEventListener('submit', (e) => {
+    e.preventDefault()
+})
 
 // footer date
 const footerEl = document.querySelector('#copyright')
