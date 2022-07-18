@@ -32,7 +32,7 @@ const formHandler = async (req, res) => {
     
     const user = new User({
         name: name,
-        email: email
+        email: email,
         phone: phone, 
         message: message
     });
