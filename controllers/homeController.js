@@ -28,11 +28,13 @@ const getPrivacyPolicy = (req, res) => {
 // contact form handler
 const formHandler = async (req, res) => { 
 
+    let { name, email, phone, message } = req.body
+    
     const user = new User({
-        name: req.body.name,
-        email: req.body.email,
-        phone: req.body.phone, 
-        message: req.body.message
+        name: name,
+        email: email
+        phone: phone, 
+        message: message
     });
 
     const errors = validationResult(req).array();
@@ -52,9 +54,8 @@ const formHandler = async (req, res) => {
         // saving the user to the database and
         // send an email to the user confirm he/she filled the form
         try {
-            await user.save() 
-            sendEmail(req.body.email)
-
+            sendEmail(email)
+            await user.save()
             console.log('User saved to database successfully and email sent!')
         } catch (error) {
             // log error
