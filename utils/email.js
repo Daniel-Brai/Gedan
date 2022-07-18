@@ -42,7 +42,7 @@ const sendEmail = async(email) => {
     
         // Create the email options and body 
         const mailOptions = {
-            from: `From <${process.env.CLIENT_EMAIL}>`,
+            from: `From GEDAN GLOBAL OPTIONS LTD<${process.env.CLIENT_EMAIL}>`,
             to: email,
             subject: `Thank you reaching out to Gedan Global Options Ltd!`,
             html: emailHTML(),
