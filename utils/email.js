@@ -42,16 +42,20 @@ const sendEmail = async(email) => {
     
         // Create the email options and body 
         const mailOptions = {
-            from: `From GEDAN GLOBAL OPTIONS LTD<${process.env.CLIENT_EMAIL}>`,
-            to: email,
+            from: `From GEDAN GLOBAL OPTIONS LTD <${process.env.CLIENT_EMAIL}>`,
+            to: `${email}`,
             subject: `Thank you reaching out to Gedan Global Options Ltd!`,
             html: emailHTML(),
         }    
 
         // Set up the email options and delivering it
-        const result = await transport.sendMail(mailOptions);
-        return result;
-
+        await transport.sendMail(mailOptions, (err, info) => {
+            if (err) { 
+                console.log(`😥 An error occured while trying to send the email: \n ${err}`)
+            } else { 
+                console.log(`📧 Email sent succesfully! -${info.response}`)
+            }
+        });
     } catch (error) {
         console.log(`An occured while sending email - ${error.message}`);
     }
